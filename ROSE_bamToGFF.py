@@ -197,10 +197,15 @@ def main():
 
     if options.bam:
         bamFile = options.bam
+        print(bamFile)
         fullPath = os.path.abspath(bamFile)
+        print(fullPath)
         bamName = fullPath.split('/')[-1].split('.')[0]
+        print(bamName)
         pathFolder = join(fullPath.split('/')[0:-1],'/')
+        print(pathFolder)
         fileList = os.listdir(pathFolder)
+        print(fileList)
         hasBai = False
         for fileName in fileList:
             if fileName.count(bamName) == 1 and fileName.count('.bai') == 1:

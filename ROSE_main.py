@@ -419,7 +419,7 @@ def main():
         #MAPPING TO THE STITCHED GFF
         mappedOut1 ='%s%s_%s_MAPPED.gff' % (mappedFolder,stitchedGFFName,bamFileName)
         #WILL TRY TO RUN AS A BACKGROUND PROCESS. BATCH SUBMIT THIS LINE TO IMPROVE SPEED
-        cmd1 = "qsub runmapping.sh nBin bamFile stitchedGFFFile mappedOut1"
+        cmd1 = "qsub runmapping.sh %s %s %s %s" %(nBin, bamFile, stitchedGFFFile, mappedOut1)
         # cmd1 = "qsub ROSE_bamToGFF.py -f 1 -e 200 -r -m %s -b %s -i %s -o %s &" % (nBin,bamFile,stitchedGFFFile,mappedOut1)
         # cmd1 = "/usr/bin/python2 ROSE_code/ROSE_bamToGFF.py -f 1 -e 200 -r -m %s -b %s -i %s -o %s &" % (nBin,bamFile,stitchedGFFFile,mappedOut1)
         print(cmd1)
@@ -428,7 +428,7 @@ def main():
         #MAPPING TO THE ORIGINAL GFF
         mappedOut2 ='%s%s_%s_MAPPED.gff' % (mappedFolder,inputName,bamFileName)
         #WILL TRY TO RUN AS A BACKGROUND PROCESS. BATCH SUBMIT THIS LINE TO IMPROVE SPEED
-        cmd2 = "qsub runmapping.sh nBin bamFile inputGFFFile mappedOut2"
+        cmd2 = "qsub runmapping.sh %s %s %s %s" %(nBin, bamFile, inputGFFFile, mappedOut2)
         # cmd2 = "/usr/bin/python2 ROSE_code/ROSE_bamToGFF.py -f 1 -e 200 -r -m %s -b %s -i %s -o %s &" % (nBin,bamFile,inputGFFFile,mappedOut2)
         print(cmd2)
         os.system(cmd2)
@@ -494,12 +494,12 @@ def main():
 
         rankbyName = options.rankby.split('/')[-1]
         controlName = options.control.split('/')[-1]
-        cmd = 'R --no-save %s %s %s %s < ROSE_callSuper.R' % (outFolder,outputFile1,inputName,controlName)
+        cmd = 'Rscript --no-save %s %s %s %s < ROSE_callSuper.R' % (outFolder,outputFile1,inputName,controlName)
 
     else:
         rankbyName = options.rankby.split('/')[-1]
         controlName = 'NONE'
-        cmd = 'R --no-save %s %s %s %s < ROSE_callSuper.R' % (outFolder,outputFile1,inputName,controlName)
+        cmd = 'Rscript --no-save %s %s %s %s < ROSE_callSuper.R' % (outFolder,outputFile1,inputName,controlName)
     print(cmd)
     os.system(cmd)
 
