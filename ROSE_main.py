@@ -499,7 +499,7 @@ def main():
     else:
         rankbyName = options.rankby.split('/')[-1]
         controlName = 'NONE'
-        cmd = 'Rscript --no-save %s %s %s %s < ROSE_callSuper.R' % (outFolder,outputFile1,inputName,controlName)
+        cmd = 'Rscript  ROSE_callSuper.R %s %s %s %s' % (outFolder,outputFile1,inputName,controlName)
     print(cmd)
     os.system(cmd)
 
